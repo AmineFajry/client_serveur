@@ -21,9 +21,39 @@ void worker(StreamSocket* client) {
     cout << "Server: \t"<< dateString << endl;
 
     sleep(5);
-    string veryLongString="dskhgjkdshgsdlgsdhjghsdglshkgsdlhgsdhjkgsdlgdhhdshjgsdhjdsssssshghjdgjdhgjdghdjghdjghjdghdjghdjghdjghjdhgjdghdjghdjghdjhgjdhgjdghjhdjghdjhgjdghdjghdjghdjghdjgdhjgdhgjdhgjdhgdjghjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj";
-    client->send(veryLongString);
-    cout << "Server: \t"<< veryLongString << endl;
+  
+    string Hello = "HELO";
+    string welcome = "WELCOME"; 
+    string menuStart = "TAP MENU TO SEE MENU";
+    string cardStart = "TAP CARD TO SEE CARDS";
+    string card = "CARD" ;
+    string quit = "QUIT";
+    string menu = "MENU";
+    string start = "START";
+    string help = "HELP";
+
+
+    client->send(Hello);
+    client->send(welcome);
+    client->send(menuStart);
+    client->send(cardStart);
+    client->send(card);
+    client->send(quit);
+    client->send(menu);
+    client->send(start);
+    client->send(help);
+
+
+    string msg ; 
+    
+    int nb=client->read(msg);
+
+    if(nb < 0){
+            printf("[-]Error in receiving data.\n");
+    }else{
+            cout << "Server: \t"<< Hello << " " << msg <<  endl;
+    }
+
 
 //    while (true) {
 //        std::string msg;
@@ -33,6 +63,8 @@ void worker(StreamSocket* client) {
 
 //        std::cout << msg;
 //    }
+
+
 
     delete client;
     std::cout << "Client disconnected" << std::endl;

@@ -1,0 +1,36 @@
+et Server
+g++ -Wall -c socket.cpp
+g++ -Wall -c server.cpp
+g++ -Wall server.o socket.o -o server -lpthread
+./server
+
+
+et Client
+g++ -Wall -c client.cpp
+g++ -Wall client.o socket.o -o client -lpthread
+./client 127.0.0.1 3490
+
+
+    string menu ; 
+    string card ; 
+    string start ; 
+
+    //bool tapmenu = false ; 
+
+    cout << "TAP 0 TO SEE MENU" << endl;
+
+    cout << "TAP 1 AND CHOOSE BETWEEN 0 to 8" <<endl;  
+
+    cout << "NOW IT'S YOUR TURN TO SHINE"<<endl ;
+
+    cout << "TAP : " ; 
+
+    cin >> start ; 
+
+
+
+
+    cin >> menu ; 
+    cout<<endl<<" ----------------------- MENU -----------------------"<<endl<<endl;
+    cout<<"1. HELP"<<endl;
+    cout<<"2. Quitter"<<endl<<endl;

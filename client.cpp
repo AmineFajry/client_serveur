@@ -4,6 +4,8 @@
 #include <sys/time.h>
 #include "socket.h"
 #include "table.h"
+#include <vector>
+
 
 using namespace std;
 using namespace stdsock;
@@ -124,10 +126,21 @@ void game(int client , int client2)
 
 }
 
-int mancheGagne()
-{
+std::vector<int> carte(int client) {
+    std::vector<int> result;
     
+    if(client >= 0 && client <= 7)
+    {
+        result.push_back(client);
+
+    }
+
+    for (auto n : result)
+      cout << n << ' ' <<endl;
+
+    return result;
 }
+
 
 void menuSwitch(int input)
 {
@@ -135,18 +148,75 @@ void menuSwitch(int input)
     switch (input)
     {
     case 1:
-        cout << "See you later" <<endl ; 
+        cout << " Braverats est un jeu ... " << endl ; 
         break;
     case 2 : 
-        cout << " Braverats est un jeu ... " << endl ; 
+        cout << "See you later" <<endl ; 
+        exit(0);
         break;
     default:
         break;
     }
 
+}
 
+int manchGagneClient(int client , int client2)
+{
+
+    int manche = 0 ; 
+
+    if(client >= 0 && client <= 7 && client2 >= 0 && client2 <= 7)
+    {
+
+        if( (client != 6 && client2 != 6) || (client == 6 && client2 == 6) )
+        {
+            if(table[0][client][client2] == 1 )
+            {
+                manche++;
+            }
+        }
+
+        else if(client == 6 && client2 != 6)
+        {
+            if(table[1][client][client2] == 1 )
+            {
+                manche++ ; 
+            }
+
+        }
+        
+        else if(client != 6 && client2 == 6)
+        {
+            if(table[2][client][client2] == 1 )
+            {
+                manche++;
+            }
+        }
+        
+        
+    }
+
+    return manche ;
 
 }
+
+int searchinVector(vector<int>v,int value)
+{
+    for(unsigned int i = 0 ; i < v.size() ;++i)
+    {
+        if(v[i] == value)
+        {
+            return i ;
+            cout << "Ressayez!"<<endl;
+        }
+    }
+
+    return -1 ;
+
+}
+
+
+
 
 int main(int argc, char* argv[])
 {
@@ -218,11 +288,19 @@ int main(int argc, char* argv[])
             cout <<endl<< "Server: \t"<< helo<< " " << name <<  endl;
             cout << "Server: \t"<< menuStart<<  endl;
             cout << "Server: \t"<< cardStart<< endl <<  endl;
+            
+            
     }
     
 
+
     string protocole  ;
     int cardChoice ; 
+    vector<int> result ;
+
+    int maxManche = 0;
+
+
 
     while(true)
     {
@@ -231,43 +309,67 @@ int main(int argc, char* argv[])
 
         if(protocole == start)
         {
+            system("clear");
             cout <<endl<< "Server: \t"<< welcome<<endl<<endl;
 
-            while(true)
+            while(maxManche <= 3)
             {
 
-                cout << "CHOOSE YOUR CARD BETWEEN 0 ... 8 : "; 
-                cin >> cardChoice ; 
+                 cout << "CHOOSE YOUR CARD BETWEEN 0 ... 8 : "; 
+                cin >> cardChoice ;
 
-                cout <<endl<< card << " " << cardChoice << endl ; 
+                if(cardChoice != searchinVector(result,cardChoice))
+                {
 
-                cout << "You chose " << " :  " ; 
 
-                cardName(cardChoice) ;
+                    cout <<endl<< card << " " << cardChoice << endl ; 
 
-                string str = to_string(cardChoice);
+                    cout << "You chose " << " :  " ; 
 
-                sock->send(str);
+                    cardName(cardChoice) ;
 
-                int num = sock->read(number);
 
-                char dernierElement = number.back();
 
-                if(num < 0){
-                    printf("[-]Error in receiving data.\n");
-                }else{
-                    cout << "Serveur: \t"<< dernierElement<< endl<< endl;
+                    string str = to_string(cardChoice);
+
+                    sock->send(str);
+
+                    int num = sock->read(number);
+
+                    char dernierElement = number.back();
+
+                    if(num < 0){
+                        printf("[-]Error in receiving data.\n");
+                    }else{
+                        cout << "Serveur: \t"<< dernierElement<< endl<< endl;
+                    }
+                    
+                    int x = dernierElement - '0';
+        
+                    game(cardChoice,x);
+
+                    maxManche += manchGagneClient(cardChoice,x);
+
+
+                    cout << "MancheGagne : " << maxManche << endl ; 
+                    
+                    result.push_back(cardChoice) ; 
+
+
+
+                    for(unsigned int i = 0 ;i < result.size() ; i++ )
+                    {
+                        cout << result[i] << ' '  ;
+                    }
+
+                    
+                    cout << endl ;
                 }
-                
-                int x = dernierElement - '0';
-     
-                game(cardChoice,x);
 
 
             
             }
     
-
 
         }else if(protocole == menu)
         {

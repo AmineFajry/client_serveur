@@ -15,50 +15,50 @@ void cardName(int number)
         case 0 : 
            cout << "Musicien"<<endl;
            cout << "valeur : 0 " << endl ; 
-           cout << "description : cette manche est annulee est mise en attente" <<endl<<endl; 
+           cout << "cette manche est annulee est mise en attente" <<endl<<endl; 
 
            break;
 
         case 1 : 
             cout << "Princesse"<<endl; 
             cout << "valeur : 1 " <<endl ; 
-            cout << "description : Si votre adversaire a joue son Prince, vous remportez la partie" <<endl<<endl;
+            cout << "Si votre adversaire a joue son Prince, vous remportez la partie" <<endl<<endl;
             break;
 
         case 2 : 
             cout << "Espion"<<endl; 
             cout << "valeur : 2 " << endl ; 
-            cout << "description : A la prochaine manche.Votre adversaire revele sa carte avant que vous chosissez la votre"<<endl<<endl;
+            cout << "A la prochaine manche.Votre adversaire revele sa carte avant que vous chosissez la votre"<<endl<<endl;
             break;
 
         case 3 : 
             cout << "Assassin"<<endl;
             cout << "valeur : 3 " << endl ; 
-            cout << "description : La valeur la plus faiible l'emporte" <<endl<<endl;
+            cout << "La valeur la plus faiible l'emporte" <<endl<<endl;
             break;
 
         case 4 : 
             cout << "Ambassadeur"<<endl; 
             cout << "valeur : 4 " << endl; 
-            cout << "description : Si vous gagnez avec cette carte,cela compte pour 2 manches" <<endl<<endl;
+            cout << "Si vous gagnez avec cette carte,cela compte pour 2 manches" <<endl<<endl;
             break;
 
         case 5 : 
             cout << "Magicien"<<endl; 
             cout <<"valeur : 5 " << endl ; 
-            cout << "description : Annule la capacite speciale de la carte jouee par l'adversaire" <<endl<<endl;
+            cout << "Annule la capacite speciale de la carte jouee par l'adversaire" <<endl<<endl;
             break;
 
         case 6 : 
             cout << "General"<< endl; 
             cout << "valeur : 6 " << endl ; 
-            cout << "description : Votre carte de la prochaine manche voit sa valeur augmentee de +2"<<endl<<endl;
+            cout << "Votre carte de la prochaine manche voit sa valeur augmentee de +2"<<endl<<endl;
             break;
 
         case 7 : 
             cout << "Prince"<<endl;
             cout << "valeur : 7" <<endl; 
-            cout << "description : Vous gagnez la manche,sauf contre le musicien et la pricesse" <<endl<<endl;
+            cout << "Vous gagnez la manche,sauf contre le musicien et la pricesse" <<endl<<endl;
             break; 
         default:
             cout << "Arbitre : Oups ta carte pas trouvée" <<endl<<endl;
@@ -196,7 +196,7 @@ int main(int argc, char* argv[])
             while(true)
             {
 
-                cout << "CHOOSE YOUR CARD BETWEEN 0 ... 8" <<endl ; 
+                cout << "CHOOSE YOUR CARD BETWEEN 0 ... 8 : "; 
                 cin >> cardChoice ; 
 
                 cout <<endl<< card << " " << cardChoice << endl ; 

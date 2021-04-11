@@ -74,24 +74,10 @@ void worker(StreamSocket* client) {
         }else{
                 cout << "Client: \t"<< dernierElement <<  endl;
         }
-        cout << "CHOOSE CARD : "; 
+        cout << "CHOOSE CARD BETWEEN 0...8 : "; 
         cin >> carte ; 
         client->send(carte);
     }
-
-
-
-
-
-//    while (true) {
-//        std::string msg;
-//        if (client->read(msg) <= 0) {
-//            break;
-//        }
-
-//        std::cout << msg;
-//    }
-
 
 
     delete client;

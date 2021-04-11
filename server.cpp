@@ -25,12 +25,13 @@ void worker(StreamSocket* client) {
     string Hello = "HELO";
     string welcome = "WELCOME"; 
     string menuStart = "TAP MENU TO SEE MENU";
-    string cardStart = "TAP CARD TO SEE CARDS";
+    string cardStart = "TAP START TO START THE GAME";
     string card = "CARD" ;
     string quit = "QUIT";
     string menu = "MENU";
     string start = "START";
     string help = "HELP";
+    string clear = "CLEAR"; 
 
 
     client->send(Hello);
@@ -42,6 +43,7 @@ void worker(StreamSocket* client) {
     client->send(menu);
     client->send(start);
     client->send(help);
+    client->send(clear);
 
 
     string msg ; 

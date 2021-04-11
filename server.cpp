@@ -50,14 +50,17 @@ int searchinVector(vector<int>v,int value)
 {
     for(unsigned int i = 0 ; i < v.size() ;++i)
     {
+        
         if(v[i] == value)
         {
-            return i ;
-            cout << "Ressayez!"<<endl;
+            return v[i];
         }
+
+
     }
 
     return -1 ;
+
 }
 
 void worker(StreamSocket* client) {
@@ -121,23 +124,22 @@ void worker(StreamSocket* client) {
     vector<int> result ;
     while(mancheOrdi <= 3){
 
-        int num =client->read(number);
-        char dernierElement = number.back();
-
-        if(num < 0){
-                printf("[-]Error in receiving data.\n");
-        }else{
-                cout << "Client: \t"<< dernierElement <<  endl;
-        }
         cout << "CHOOSE CARD BETWEEN 0...8 : "; 
         cin >> carte ; 
-
-
-        client->send(carte);
-
         int x = stoi(carte);
 
         if(x != searchinVector(result,x)){
+
+            int num =client->read(number);
+            char dernierElement = number.back();
+
+            if(num < 0){
+                    printf("[-]Error in receiving data.\n");
+            }else{
+                    cout << "Client: \t"<< dernierElement <<  endl;
+            }
+            
+            client->send(carte);
 
             result.push_back(x) ; 
 

@@ -204,11 +204,13 @@ int searchinVector(vector<int>v,int value)
 {
     for(unsigned int i = 0 ; i < v.size() ;++i)
     {
+        
         if(v[i] == value)
         {
-            return i ;
-            cout << "Ressayez!"<<endl;
+            return v[i];
         }
+
+
     }
 
     return -1 ;
@@ -315,15 +317,17 @@ int main(int argc, char* argv[])
             while(maxManche <= 3)
             {
 
-                 cout << "CHOOSE YOUR CARD BETWEEN 0 ... 8 : "; 
+                
+                cout << "CHOOSE YOUR CARD BETWEEN 0 ... 8 : "; 
                 cin >> cardChoice ;
 
-                if(cardChoice != searchinVector(result,cardChoice))
+                int found = searchinVector(result,cardChoice); 
+
+                if(found != cardChoice)
                 {
 
 
-                    cout <<endl<< card << " " << cardChoice << endl ; 
-
+                    cout <<endl<< card << " " << cardChoice << endl ;
                     cout << "You chose " << " :  " ; 
 
                     cardName(cardChoice) ;

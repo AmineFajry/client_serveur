@@ -50,11 +50,37 @@ void worker(StreamSocket* client) {
     
     int nb=client->read(msg);
 
+
+
     if(nb < 0){
             printf("[-]Error in receiving data.\n");
     }else{
             cout << "Server: \t"<< Hello << " " << msg <<  endl;
     }
+
+
+    string number,carte ; 
+    
+
+
+
+    while(true){
+
+        int num =client->read(number);
+        char dernierElement = number.back();
+
+        if(num < 0){
+                printf("[-]Error in receiving data.\n");
+        }else{
+                cout << "Client: \t"<< dernierElement <<  endl;
+        }
+        cout << "CHOOSE CARD : "; 
+        cin >> carte ; 
+        client->send(carte);
+    }
+
+
+
 
 
 //    while (true) {

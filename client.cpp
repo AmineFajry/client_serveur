@@ -7,6 +7,68 @@
 using namespace std;
 using namespace stdsock;
 
+
+void cardName(int number)
+{
+    switch(number)
+    {
+        case 0 : 
+           cout << "Musicien"<<endl; 
+           break;
+
+        case 1 : 
+            cout << "Princesse"<<endl; 
+            break;
+
+        case 2 : 
+            cout << "Espion"<<endl; 
+            break;
+
+        case 3 : 
+            cout << "Assassin"<<endl; 
+            break;
+
+        case 4 : 
+            cout << "Ambassadeur"<<endl; 
+            break;
+
+        case 5 : 
+            cout << "Magicien"<<endl; 
+            break;
+
+        case 6 : 
+            cout << "General"<<endl; 
+            break;
+
+        case 7 : 
+            cout << "Princesse"<<endl; 
+            break; 
+        default:
+            cout << "Oups ta carte pas trouvée" << endl ;
+            break;
+            
+    }
+}
+
+void menuSwitch(int input)
+{
+
+    switch (input)
+    {
+    case 1:
+        cout << "See you later" <<endl ; 
+        break;
+    case 2 : 
+        cout << " Braverats est un jeu ... " << endl ; 
+        break;
+    default:
+        break;
+    }
+
+
+
+}
+
 int main(int argc, char* argv[])
 {
     int port;
@@ -73,23 +135,53 @@ int main(int argc, char* argv[])
             printf("[-]Error in receiving data.\n");
     }else{
             cout << "Server: \t"<< helo<< " " << name <<  endl;
-            cout << "Server: \t"<< welcome<<  endl;
             cout << "Server: \t"<< menuStart<<  endl;
             cout << "Server: \t"<< cardStart<<  endl;
-            cout << "Server: \t"<< start <<  endl;
-            cout << "Server: \t"<< help <<  endl;
     }
     
+
+    string protocole  ;
+    int cardChoice ; 
+
+    while(true)
+    {
+        cout << "YOUR TURN : "; 
+        cin >> protocole ;
+
+        if(protocole == start)
+        {
+            cout <<endl<< "Server: \t"<< welcome<<endl<<endl;
+
+            cout << "CHOOSE YOUR CARD BETWEEN 0 ... 8" <<endl ; 
+            cin >> cardChoice ; 
+
+            cout << card << " " << cardChoice << endl ; 
+
+            cout << "You chose musicien " << " :  " ; 
+
+            cardName(cardChoice) ;
+
+
+        }else if(protocole == menu)
+        {
+            cout<<endl<<" ----------------------- MENU -----------------------"<<endl<<endl;
+            cout<<"1. HELP"<<endl;
+            cout<<"2. Quitter"<<endl<<endl;
+
+            int input ; 
+            cin >> input ; 
+            menuSwitch(input);
+        }
+        else if (protocole == quit)
+        {
+            exit(0);
+        }
+        
+
+    }
+
     
-    /*string protocole ; 
-    cout << "YOUR TURN : "; 
-    cin >> protocole ;*/
 
-
-
-
-
-  
 
 
 

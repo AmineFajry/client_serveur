@@ -3,6 +3,7 @@
 
 #include <sys/time.h>
 #include "socket.h"
+#include "table.h"
 
 using namespace std;
 using namespace stdsock;
@@ -69,22 +70,63 @@ void cardName(int number)
 
 void game(int client , int client2)
 {
-    if(client > 0 && client <= 7 && client2 > 0 && client2 <= 7)
+    if(client >= 0 && client <= 7 && client2 >= 0 && client2 <= 7)
     {
-        if(client>client2)
+
+        if( (client != 6 && client2 != 6) || (client == 6 && client2 == 6) )
         {
-            cout << "le joueur a gagne"<<endl ;
-        }else if(client < client2)
-        {
-            cout << "l'ordinateur a gagne " <<endl ;
+            if(table[0][client][client2] == 1 )
+            {
+                cout <<endl<< "Vous avez gagné " <<endl<<endl;
+            }
+            else if(table[0][client][client2] == 2)
+            {
+                cout <<endl<< "L'ordinateur a gagne" <<endl<<endl;
+            }else if(table[0][client][client2] == 0)
+            {
+                cout <<endl<< "EGUALITE if 0" <<endl<<endl;
+            }
         }
-        else if(client == client2)
+
+        else if(client == 6 && client2 != 6)
         {
-            cout << "egalite"<<endl ; 
+            if(table[1][client][client2] == 1 )
+            {
+                cout <<endl<< "Vous avez gagné " <<endl<<endl;
+            }
+            else if(table[1][client][client2] == 2)
+            {
+                cout <<endl<< "L'ordinateur a gagne" <<endl<<endl;
+            }else if(table[1][client][client2] == 0)
+            {
+                cout <<endl<< "EGUALITE if 1" <<endl<<endl;
+            }
         }
+        
+        else if(client != 6 && client2 == 6)
+        {
+            if(table[2][client][client2] == 1 )
+            {
+                cout <<endl<< "Vous avez gagné " <<endl<<endl;
+            }
+            else if(table[2][client][client2] == 2)
+            {
+                cout <<endl<< "L'ordinateur a gagne" <<endl<<endl;
+            }else if(table[2][client][client2] == 0)
+            {
+                cout <<endl<< "EGUALITE if 2" <<endl<<endl;
+            }
+        }
+
     }else{
         return ; 
     }
+
+}
+
+int mancheGagne()
+{
+    
 }
 
 void menuSwitch(int input)
@@ -173,11 +215,9 @@ int main(int argc, char* argv[])
     if(nb < 0){
             printf("[-]Error in receiving data.\n");
     }else{
-            cout << "Server: \t"<< helo<< " " << name <<  endl;
+            cout <<endl<< "Server: \t"<< helo<< " " << name <<  endl;
             cout << "Server: \t"<< menuStart<<  endl;
-            cout << "Server: \t"<< cardStart<<  endl;
-            cout << "Server: \t"<< clear<<  endl;
-
+            cout << "Server: \t"<< cardStart<< endl <<  endl;
     }
     
 
@@ -219,6 +259,10 @@ int main(int argc, char* argv[])
                     cout << "Serveur: \t"<< dernierElement<< endl<< endl;
                 }
                 
+                int x = dernierElement - '0';
+     
+                game(cardChoice,x);
+
 
             
             }
@@ -245,12 +289,6 @@ int main(int argc, char* argv[])
         
 
     }
-
-    
-
-
-
-
 
     //delete sock
 

@@ -220,6 +220,8 @@ int searchinVector(vector<int>v,int value)
 
 
 
+
+
 int main(int argc, char* argv[])
 {
     int port;
@@ -326,13 +328,10 @@ int main(int argc, char* argv[])
                 if(found != cardChoice)
                 {
 
-
                     cout <<endl<< card << " " << cardChoice << endl ;
                     cout << "You chose " << " :  " ; 
 
                     cardName(cardChoice) ;
-
-
 
                     string str = to_string(cardChoice);
 
@@ -352,14 +351,20 @@ int main(int argc, char* argv[])
         
                     game(cardChoice,x);
 
-                    maxManche += manchGagneClient(cardChoice,x);
-
-
-                    cout << "MancheGagne : " << maxManche << endl ; 
                     
                     result.push_back(cardChoice) ; 
 
+                    if(result[result.size() -1] == 6 )
+                    {
+                        maxManche++;
+                    }
 
+                    maxManche += manchGagneClient(cardChoice,x);
+
+
+                    
+
+                    cout << "MancheGagne : " << maxManche << endl ; 
 
                     for(unsigned int i = 0 ;i < result.size() ; i++ )
                     {
@@ -369,9 +374,6 @@ int main(int argc, char* argv[])
                     
                     cout << endl ;
                 }
-
-
-            
             }
     
 

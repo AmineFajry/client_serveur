@@ -142,10 +142,14 @@ void worker(StreamSocket* client) {
             client->send(carte);
 
             result.push_back(x) ; 
-
             int y = dernierElement - '0';
 
+            if(result[result.size() -1] == 6 )
+            {
+                mancheOrdi++;
+            }
             mancheOrdi += manchGagneOrdi(y,x);
+
             cout << "MancheGagne : " << mancheOrdi << endl ; 
 
             for(unsigned int i = 0 ;i < result.size() ; i++ )
